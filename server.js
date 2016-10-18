@@ -10,5 +10,5 @@ app.listen(3000, () => {
 });
 
 app.get('/', ( req, res ) => {
-    res.render('index.twig', { title: 'hello world' });
+    res.render('home.twig', { title: 'hello world' });
 });
