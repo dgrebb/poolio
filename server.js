@@ -17,7 +17,7 @@ db.on('ready', () => {
 	});
 })
 
-// Application views
+// Application Views
 
 app.get('/', ( req, res ) => {
 	res.render('home.twig', { title: 'Poolio!' });
@@ -34,3 +34,10 @@ app.get('/active-game', ( req, res ) => {
 app.get('/leaderboard', ( req, res ) => {
 	res.render('leaderboard.twig', { title: 'Winners!' });
 });
+
+// Application Endpoints
+
+app.post('/players/add', ( req, res ) => {
+	var name = req.body.name;
+	console.log(name);
+})
