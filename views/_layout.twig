@@ -10,9 +10,16 @@
 
 <body>
 
+    <h1>{{ title }}</h1>
+
 	<ul>
 		<li><a href="/">Home</a></li>
 		<li><a href="/new-game">New Game</a></li>
+		{# 
+			@TODO
+			Add a conditional navigation item that only exists if redis 
+			has an active game hash; needs server logic as well	
+		#}
 		<li><a href="/leaderboard">Leaderboard</a></li>
 	</ul>
 
