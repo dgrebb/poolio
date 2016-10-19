@@ -24,7 +24,27 @@ app.get('/', ( req, res ) => {
 });
 
 app.get('/new-game', ( req, res ) => {
-	res.render('game--new.twig', { title: 'Start a new game!' });
+	
+    var players = [];
+    var completed = 0;
+    var player1;
+    var player2;
+
+    db.keys('players:*', (err, result) => {
+        for ( var i = 0; i < result.length; i++ ) {
+            db.hget(result[i], 'Name', ( err, name ) => {
+                completed++;
+                players.push(name);
+                if ( completed === result.length ) {
+                    res.render('game--new.twig', {
+                    	title: 'Start a new game!',
+                    	players: players
+                    });
+                }
+            });
+        }
+    });
+    
 });
 
 app.get('/active-game', ( req, res ) => {
@@ -40,4 +60,6 @@ app.get('/leaderboard', ( req, res ) => {
 app.post('/players/add', ( req, res ) => {
 	var name = req.body.name;
 	console.log(name);
+	db.hset('players:' + name, 'Name', name);
+	res.redirect('/new-game');
 })

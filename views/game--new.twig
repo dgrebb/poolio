@@ -2,13 +2,30 @@
 
 {% block body %}
 
-    <h2>Add a new player</h2>
+	<h1>Start a new game</h1>
 
-    <form action="/players/add" method="POST">
-        
-        <input type="text" placeholder="Player Name" name="name">
-        <button type="submit">Add Player</button>
+	<form action="#" method="POST">
 
-    </form>
+		<ul class="players">
+			{% for player in players %}
+				<li>
+					<input type="checkbox" id="{{ player|replace({' ', '-'}) }}" value="{{ player }}" name="players">
+					<label for="{{ player|replace({' ', '-'}) }}">{{ player }}</label>
+				</li>
+			{% endfor %}
+		</ul>
+
+		<button type="submit">Submit</button>
+
+	</form>
+
+	<h2>Add a new player</h2>
+
+	<form action="/players/add" method="POST">
+
+		<input type="text" placeholder="Player Name" name="name">
+		<button type="submit">Add Player</button>
+
+	</form>
 
 {% endblock %}
