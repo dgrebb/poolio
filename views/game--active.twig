@@ -2,4 +2,9 @@
 
 {% block body %}
 
+	{% for player in players %}
+		<h2>Player {{ loop.index }}</h2>
+		{{ player }}
+	{% endfor %}
+	
 {% endblock %}

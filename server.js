@@ -24,7 +24,7 @@ app.get('/', ( req, res ) => {
 });
 
 app.get('/new-game', ( req, res ) => {
-	
+
     var players = [];
     var completed = 0;
     var player1;
@@ -44,11 +44,19 @@ app.get('/new-game', ( req, res ) => {
             });
         }
     });
-    
+
 });
 
 app.get('/active-game', ( req, res ) => {
-	res.render('game--active.twig', { title: 'Let the games begin!' });
+
+    db.hgetall('game:players', ( err, results ) => {
+        var players = results;
+        res.render('game--active.twig', {
+        	 title: 'Let the games begin!',
+        	 players: players
+        });
+    });
+
 });
 
 app.get('/leaderboard', ( req, res ) => {
@@ -62,4 +70,10 @@ app.post('/players/add', ( req, res ) => {
 	console.log(name);
 	db.hset('players:' + name, 'Name', name);
 	res.redirect('/new-game');
-})
+});
+
+app.post('/game/start', (req, res) => {
+    db.hset('game:players', 'Player 1', req.body.players[0]);
+    db.hset('game:players', 'Player 2', req.body.players[1]);
+    res.redirect('/active-game');
+});
