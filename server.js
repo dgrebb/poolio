@@ -1,10 +1,12 @@
 const express = require('express');
+const path = require('path');
 const twig = require('twig');
 const bodyParser = require('body-parser');
 const db = require('redis').createClient();
 
 const app = express();
 
+app.use(express.static(path.join(__dirname, './')));
 app.use(bodyParser.urlencoded({extended: true}));
 
 db.on('error', ( err ) => {
