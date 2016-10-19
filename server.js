@@ -25,42 +25,47 @@ app.get('/', ( req, res ) => {
 
 app.get('/new-game', ( req, res ) => {
 
-    var players = [];
-    var completed = 0;
-    var player1;
-    var player2;
+	var players = [];
+	var completed = 0;
+	var player1;
+	var player2;
 
-    db.keys('players:*', (err, result) => {
-        for ( var i = 0; i < result.length; i++ ) {
-            db.hget(result[i], 'Name', ( err, name ) => {
-                completed++;
-                players.push(name);
-                if ( completed === result.length ) {
-                    res.render('game--new.twig', {
-                    	title: 'Start a new game!',
-                    	players: players
-                    });
-                }
-            });
-        }
-    });
+	db.keys('players:*', (err, result) => {
+		for ( var i = 0; i < result.length; i++ ) {
+			db.hget(result[i], 'Name', ( err, name ) => {
+				completed++;
+				players.push(name);
+				if ( completed === result.length ) {
+					res.render('game--new.twig', {
+						title: 'Start a new game!',
+						players: players
+					});
+				}
+			});
+		}
+	});
 
 });
 
 app.get('/active-game', ( req, res ) => {
 
-    db.hgetall('game:players', ( err, results ) => {
-        var players = results;
-        res.render('game--active.twig', {
-        	 title: 'Let the games begin!',
-        	 players: players
-        });
-    });
+	db.hgetall('game:players', ( err, results ) => {
+		var players = results;
+		res.render('game--active.twig', {
+			title: 'Let the games begin!',
+			players: players
+		});
+	});
 
 });
 
 app.get('/leaderboard', ( req, res ) => {
-	res.render('leaderboard.twig', { title: 'Winners!' });
+	db.zrevrange('scores', 0, -1, ( err, result ) => {
+			res.render('leaderboard.twig', {
+			title: 'Winners!',
+			leaders: result
+		});
+	});
 });
 
 // Application Endpoints
@@ -72,8 +77,14 @@ app.post('/players/add', ( req, res ) => {
 	res.redirect('/new-game');
 });
 
+app.get('/players/score/:player', (req, res) => {
+	var player = req.params.player;
+	db.zincrby('scores', 1, player);
+	res.redirect('/leaderboard');
+});
+
 app.post('/game/start', (req, res) => {
-    db.hset('game:players', 'Player 1', req.body.players[0]);
-    db.hset('game:players', 'Player 2', req.body.players[1]);
-    res.redirect('/active-game');
+	db.hset('game:players', 'Player 1', req.body.players[0]);
+	db.hset('game:players', 'Player 2', req.body.players[1]);
+	res.redirect('/active-game');
 });
