@@ -5,6 +5,7 @@
 	{% for player in players %}
 		<h2>Player {{ loop.index }}</h2>
 		{{ player }}
+		<a href="/players/score/{{player}}">Winner</a>
 	{% endfor %}
 	
 {% endblock %}
