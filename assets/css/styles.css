@@ -29,7 +29,7 @@ input[type="textarea"] {
 
 .pi-btn {
 	background-color: #f3f3f3;
-	border: 0;
+	border: 1px solid #f9f9f9;
 	border-radius: 4px;
 	box-sizing: border-box;
 	cursor: pointer;
@@ -44,6 +44,12 @@ input[type="textarea"] {
 .pi-btn:hover,
 .pi-btn:focus {
 	background-color: #d5deed;
+}
+
+.pi-btn:disabled {
+	color: #f2f2f2;
+	cursor: not-allowed;
+	background-color: #fcfcfc;
 }
 
 /*-----------------------------------------*\
