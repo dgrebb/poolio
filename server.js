@@ -36,33 +36,34 @@ app.get('/', ( req, res ) => {
 
 app.get('/new-game', ( req, res ) => {
 
-	var players = [];
-	var completed = 0;
-	var player1;
-	var player2;
+	db.keys('players:*', (err, result) => {
 
-	db.exists('players', (err, response) => {
-		
-		if ( response ) {
-			console.log('hello?');
-			db.keys('players:*', (err, result) => {
-				for ( var i = 0; i < result.length; i++ ) {
-					db.hget(result[i], 'Name', ( err, name ) => {
-						completed++;
-						players.push(name);
-						if ( completed === result.length ) {
-							res.render('game--new.twig', {
-								title: 'Start a new game!',
-								players: players
-							});
-						}
-					});
-				}
-			});
+		if ( result.length > 0 ) {
+
+			var players = [];
+			var completed = 0;
+			var player1;
+			var player2;
+
+			for ( var i = 0; i < result.length; i++ ) {
+				db.hget(result[i], 'Name', ( err, name ) => {
+					completed++;
+					players.push(name);
+					if ( completed === result.length ) {
+						res.render('game--new.twig', {
+							title: 'Start a new game!',
+							players: players
+						});
+					}
+				});
+			}
+
 		} else {
+
 			res.render('game--new.twig', {
 				title: 'Start a game!'
 			});
+
 		}
 
 	});
@@ -83,22 +84,24 @@ app.get('/active-game', ( req, res ) => {
 
 app.get('/leaderboard', ( req, res ) => {
 
-	db.exists('scores', ( err, response ) => {
+	db.zrevrange('scores', 0, -1, ( err, result ) => {
 
-		if ( response ) {
-			db.zrevrange('scores', 0, -1, ( err, result ) => {
-					res.render('leaderboard.twig', {
-					title: 'Winners!',
-					leaders: result
-				});
-			});	
+		if ( result.length > 0 ) {
+
+			res.render('leaderboard.twig', {
+				title: 'Winners!',
+				leaders: result
+			});
+
 		} else {
+
 			res.render('leaderboard.twig', {
 				title: 'No games have been played yet.'
 			})
 		}
 		
-	})
+	});
+	
 });
 
 // Application Endpoints
