@@ -2,7 +2,7 @@
   "name": "Poolio",
   "version": "1.0.0",
   "description": "A pool (billiards) game tracking application.",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
