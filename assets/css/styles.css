@@ -14,7 +14,7 @@ body {
 
 ol,
 ul {
-	padding: 0;
+	padding: 0;	
 }
 
 ul li {
@@ -102,7 +102,6 @@ input[type="textarea"] {
 }
 
 .pi-leaderboard-list {
-	padding-left: 1em;
 	list-style-position:inside;
 }
 
