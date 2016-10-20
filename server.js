@@ -17,7 +17,7 @@ var port = process.env.PORT || 8080;
 
 process.on('uncaughtException', (err) => {
 	console.log(err);
-})
+});
 
 app.use(express.static(path.join(__dirname, './')));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -26,12 +26,10 @@ db.on('error', ( err ) => {
 	console.log('Poolio encountered an error connecting to the database: ' + err);
 });
 
-db.on('ready', () => {
-	app.listen(port, () => {
-		console.log('Poolio is ready.');
-		console.log(port);
-	});
-})
+app.listen(port, () => {
+	console.log('Poolio is ready.');
+	console.log(port);
+});
 
 // Application Views
 
