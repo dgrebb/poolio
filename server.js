@@ -13,7 +13,7 @@ if (process.env.REDISTOGO_URL) {
 
 const app = express();
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 8080;
 
 app.use(express.static(path.join(__dirname, './')));
 app.use(bodyParser.urlencoded({extended: true}));
