@@ -2,7 +2,7 @@
 
 {% block body %}
 
-	<h2>Select players</h2>
+	<h3>Select players</h3>
 
 	<form action="/game/start" method="POST" class="pi-form--game-start">
 
@@ -15,16 +15,16 @@
 			{% endfor %}
 		</ul>
 
-		<button type="submit">Submit</button>
+		<button type="submit" class="pi-btn">Start Game</button>
 
 	</form>
 
-	<h2>Add a new player</h2>
+	<h3>Add a new player</h3>
 
-	<form action="/players/add" method="POST">
+	<form action="/players/add" method="POST" class="pi-form--add-player">
 
 		<input type="text" placeholder="Player Name" name="name">
-		<button type="submit">Add Player</button>
+		<button type="submit" class="pi-btn">Add Player</button>
 
 	</form>
 

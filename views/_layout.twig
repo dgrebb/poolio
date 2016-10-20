@@ -5,26 +5,42 @@
 <head>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="/assets/css/styles.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<title>Poolio</title>
 </head>
 
 <body>
 
-    <h1>{{ title }}</h1>
+	<div class="pi-wrapper">
 
-	<ul>
-		<li><a href="/">Home</a></li>
-		<li><a href="/new-game">New Game</a></li>
-		{# 
-			@TODO
-			Add a conditional navigation item that only exists if redis 
-			has an active game hash; needs server logic as well	
-		#}
-		<li><a href="/leaderboard">Leaderboard</a></li>
-	</ul>
+		<header class="pi-header">
 
-	{% block body %}{% endblock %}
+			<h1 class="title">Poolio</h1>
+
+			<ul role="navigation">
+				<li><a href="/" class="pi-btn">Home</a></li>
+				<li><a href="/new-game" class="pi-btn">New Game</a></li>
+				{# 
+					@TODO
+					Add a conditional navigation item that only exists if redis 
+					has an active game hash; needs server logic as well	
+				#}
+				<li><a href="/leaderboard" class="pi-btn">Leaderboard</a></li>
+			</ul>
+
+		</header>
+
+		<main role="main" class="pi-main">
+
+		    <h2>{{ title }}</h2>
+
+			{% block body %}{% endblock %}
+
+		</main>
+
+	</div>
 
 	<script src="/assets/js/scripts.js"></script>
 </body>

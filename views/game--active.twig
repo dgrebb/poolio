@@ -2,10 +2,16 @@
 
 {% block body %}
 
-	{% for player in players %}
-		<h2>Player {{ loop.index }}</h2>
-		{{ player }}
-		<a href="/players/score/{{player}}">Winner</a>
-	{% endfor %}
+	<div class="pi-players">
+
+		{% for player in players %}
+			<div class="pi-player">
+				<h3>Player {{ loop.index }}</h3>
+				{{ player }}
+				<a href="/players/score/{{player}}" class="pi-btn">Winner</a>
+			</div>
+		{% endfor %}
+
+	</div>
 	
 {% endblock %}

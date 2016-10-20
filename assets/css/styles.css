@@ -1,0 +1,134 @@
+/*-----------------------------------------*\
+	Gobal
+\*-----------------------------------------*/
+
+body {
+	background-color: #2a6cd6;
+	font-family: 'Open Sans', sans-serif;
+	margin-top: 1em;
+}
+
+/*-----------------------------------------*\
+	Base
+\*-----------------------------------------*/
+
+ol,
+ul {
+	padding: 0;
+}
+
+ul li {
+	list-style-type: none;
+}
+
+input[type="text"],
+input[type="textarea"] {
+	font-size: 1em;
+	padding: 1em;
+}
+
+.pi-btn {
+	background-color: #f3f3f3;
+	border: 0;
+	border-radius: 4px;
+	box-sizing: border-box;
+	cursor: pointer;
+	color: gray;
+	display: inline-block;
+	font-size: 1em;
+	padding: 1em 2em;
+	text-decoration: none;
+	transition: background-color .5s;
+}
+
+.pi-btn:hover,
+.pi-btn:focus {
+	background-color: #d5deed;
+}
+
+/*-----------------------------------------*\
+	Layout
+\*-----------------------------------------*/
+
+.pi-wrapper {
+	margin: auto;
+	width: 95%;
+}
+
+.pi-header,
+.pi-main {
+	background-color: #fff;
+	border-radius: 4px;
+	padding: 1em 2em;
+	margin-bottom: 1em;
+}
+
+.pi-header {
+	text-align: center;
+}
+
+.pi-header li {
+	display: block;
+	margin-bottom: .5em;
+}
+
+.pi-main {
+	text-align: center;
+}
+
+.pi-form--add-player input{
+	display: block;
+	margin: 1em auto;
+	text-align: center;
+}
+
+.pi-players {
+	display: block;
+}
+
+.pi-player {
+	text-align: center;
+}
+
+.pi-player .pi-btn {
+	display: block;
+	margin: 1em auto;
+}
+
+.pi-leaderboard-list {
+	padding-left: 1em;
+	list-style-position:inside;
+}
+
+@media (min-width: 748px) {
+
+	.pi-wrapper {
+		width: 80%;
+	}
+
+	.pi-header,
+	.pi-main {
+		margin-bottom: 2em;
+	}
+
+	.pi-header li {
+		display: inline-block;
+		margin-bottom: 0;
+	}
+
+	.pi-players {
+		display: table;
+		margin: auto;
+		width: 80%;
+	}
+
+	.pi-player {
+		display: table-cell;
+		width: 50%;
+	}
+
+	.pi-player .pi-btn {
+		width: 80%;
+	}
+
+}
