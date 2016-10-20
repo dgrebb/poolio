@@ -25,6 +25,7 @@ db.on('error', ( err ) => {
 db.on('ready', () => {
 	app.listen(port, () => {
 		console.log('Poolio is ready.');
+		console.log(port);
 	});
 })
 
@@ -108,7 +109,6 @@ app.get('/leaderboard', ( req, res ) => {
 
 app.post('/players/add', ( req, res ) => {
 	var name = req.body.name;
-	console.log(name);
 	db.hset('players:' + name, 'Name', name);
 	res.redirect('/new-game');
 });
