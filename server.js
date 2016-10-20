@@ -13,6 +13,8 @@ if (process.env.REDISTOGO_URL) {
 
 const app = express();
 
+var port = process.env.PORT || 3000;
+
 app.use(express.static(path.join(__dirname, './')));
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -21,8 +23,8 @@ db.on('error', ( err ) => {
 });
 
 db.on('ready', () => {
-	app.listen(3000, () => {
-		console.log('Poolio is ready at http://localhost:3000');
+	app.listen(port, () => {
+		console.log('Poolio is ready.');
 	});
 })
 
