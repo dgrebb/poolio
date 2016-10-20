@@ -3,6 +3,10 @@ const path = require('path');
 const twig = require('twig');
 const bodyParser = require('body-parser');
 
+process.on('uncaughtException', (err) => {
+	console.log(err);
+});
+
 if (process.env.REDISTOGO_URL) {
     const rtg   = require("url").parse(process.env.REDISTOGO_URL);
 	var db = require("redis").createClient(rtg.port, rtg.hostname);
@@ -11,24 +15,19 @@ if (process.env.REDISTOGO_URL) {
     var db = require('redis').createClient();
 }
 
-const app = express();
-
-var port = process.env.PORT || 8080;
-
-process.on('uncaughtException', (err) => {
-	console.log(err);
-});
-
-app.use(express.static(path.join(__dirname, './')));
-app.use(bodyParser.urlencoded({extended: true}));
-
 db.on('error', ( err ) => {
 	console.log('Poolio encountered an error connecting to the database: ' + err);
 });
 
+const app = express();
+
+var port = process.env.PORT || 8080;
+
+app.use(express.static(path.join(__dirname, './')));
+app.use(bodyParser.urlencoded({extended: true}));
+
 app.listen(port, () => {
 	console.log('Poolio is ready.');
-	console.log(port);
 });
 
 // Application Views
