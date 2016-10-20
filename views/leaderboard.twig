@@ -2,12 +2,16 @@
 
 {% block body %}
 
-	<ol class="pi-leaderboard-list">
+    {% if leaders %}
 
-		{% for player in leaders %}
-			<li>{{ player }}</li>
-		{% endfor %}
+        <ol class="pi-leaderboard-list">
 
-	</ol>
+            {% for player in leaders %}
+                <li>{{ player }}</li>
+            {% endfor %}
+
+        </ol>
+
+    {% endif %}
 
 {% endblock %}

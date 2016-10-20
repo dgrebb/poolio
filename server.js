@@ -41,19 +41,30 @@ app.get('/new-game', ( req, res ) => {
 	var player1;
 	var player2;
 
-	db.keys('players:*', (err, result) => {
-		for ( var i = 0; i < result.length; i++ ) {
-			db.hget(result[i], 'Name', ( err, name ) => {
-				completed++;
-				players.push(name);
-				if ( completed === result.length ) {
-					res.render('game--new.twig', {
-						title: 'Start a new game!',
-						players: players
+	db.exists('players', (err, response) => {
+		
+		if ( response ) {
+			console.log('hello?');
+			db.keys('players:*', (err, result) => {
+				for ( var i = 0; i < result.length; i++ ) {
+					db.hget(result[i], 'Name', ( err, name ) => {
+						completed++;
+						players.push(name);
+						if ( completed === result.length ) {
+							res.render('game--new.twig', {
+								title: 'Start a new game!',
+								players: players
+							});
+						}
 					});
 				}
 			});
+		} else {
+			res.render('game--new.twig', {
+				title: 'Start a game!'
+			});
 		}
+
 	});
 
 });
@@ -71,12 +82,23 @@ app.get('/active-game', ( req, res ) => {
 });
 
 app.get('/leaderboard', ( req, res ) => {
-	db.zrevrange('scores', 0, -1, ( err, result ) => {
+
+	db.exists('scores', ( err, response ) => {
+
+		if ( response ) {
+			db.zrevrange('scores', 0, -1, ( err, result ) => {
+					res.render('leaderboard.twig', {
+					title: 'Winners!',
+					leaders: result
+				});
+			});	
+		} else {
 			res.render('leaderboard.twig', {
-			title: 'Winners!',
-			leaders: result
-		});
-	});
+				title: 'No games have been played yet.'
+			})
+		}
+		
+	})
 });
 
 // Application Endpoints

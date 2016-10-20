@@ -2,24 +2,28 @@
 
 {% block body %}
 
-	<h3>Select players</h3>
+	{% if players %}
 
-	<form action="/game/start" method="POST" class="pi-form--game-start">
+		<h3>Select players</h3>
 
-		<ul class="players">
-			{% for player in players %}
-				<li>
-					<input type="checkbox" id="{{ player|replace({' ', '-'}) }}" value="{{ player }}" name="players">
-					<label for="{{ player|replace({' ', '-'}) }}">{{ player }}</label>
-				</li>
-			{% endfor %}
-		</ul>
+		<form action="/game/start" method="POST" class="pi-form--game-start">
+			
+				<ul class="players">
+					{% for player in players %}
+						<li>
+							<input type="checkbox" id="{{ player|replace({' ', '-'}) }}" value="{{ player }}" name="players">
+							<label for="{{ player|replace({' ', '-'}) }}">{{ player }}</label>
+						</li>
+					{% endfor %}
+				</ul>
 
-		<button type="submit" class="pi-btn" disabled>Start Game</button>
+			<button type="submit" class="pi-btn" disabled>Start Game</button>
 
-	</form>
+		</form>
+			
+	{% endif %}
 
-	<h3>Add a new player</h3>
+	<h3>Add a player</h3>
 
 	<form action="/players/add" method="POST" class="pi-form--add-player">
 
