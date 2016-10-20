@@ -22,7 +22,7 @@ db.on('ready', () => {
 // Application Views
 
 app.get('/', ( req, res ) => {
-	res.render('home.twig', { title: 'Poolio!' });
+	res.render('home.twig');
 });
 
 app.get('/new-game', ( req, res ) => {
