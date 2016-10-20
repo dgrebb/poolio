@@ -2,7 +2,14 @@ const express = require('express');
 const path = require('path');
 const twig = require('twig');
 const bodyParser = require('body-parser');
-const db = require('redis').createClient();
+
+if (process.env.REDISTOGO_URL) {
+    const rtg   = require("url").parse(process.env.REDISTOGO_URL);
+	var db = require("redis").createClient(rtg.port, rtg.hostname);
+	db.auth(rtg.auth.split(":")[1]);
+} else {
+    var db = require('redis').createClient();
+}
 
 const app = express();
 
