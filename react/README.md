@@ -1,6 +1,8 @@
 # Technology Stack #
 
 * React
+* Babel
+* webpack
 
 # Application Structure #
 
