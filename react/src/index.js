@@ -20,13 +20,23 @@ const container = document.querySelector('.container');
  */
 class App extends Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      players: ['Dan', 'Steve']
+    };
+  }
+
   render () {
     return (
       <div>
         <h1 className="text-xs-center">Poolio</h1>
         <SearchBar />
         <AddButton />
-        <PlayerList />
+        <PlayerList
+          players={this.state.players}
+        />
         <StartButton />
       </div>
     );
