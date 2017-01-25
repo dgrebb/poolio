@@ -1,3 +1,10 @@
+# Technology Stack #
+
+* Express
+* Redis
+* Node
+* jQuery
+
 # Application Structure #
 
 ## Endpoints ##
@@ -10,7 +17,7 @@
 
 * / (view leaderboard, or start a new game)
 * /new-game start a new game / add a new player
-* /active-game current game (new feature?) / winner select 
+* /active-game current game (new feature?) / winner select
 * /leaderboard leaderboard
 
 ## Redis Data Model ##
