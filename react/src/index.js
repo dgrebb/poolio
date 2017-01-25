@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
  * Import our custom components.
  */
 import SearchBar from './components/searchbar';
+import AddButton from './components/add-button';
 
 /**
  * Main application container.
@@ -22,6 +23,7 @@ class App extends Component {
       <div>
         <h1 className="text-xs-center">Poolio</h1>
         <SearchBar />
+        <AddButton />
       </div>
     );
   }

@@ -8,7 +8,7 @@ class SearchBar extends Component {
         <input
           type="text"
           placeholder="Search for or add new player."
-          className="col-md-12"
+          className="col-md-11"
         />
       </div>
     );
