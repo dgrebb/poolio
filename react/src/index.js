@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 /**
+ * Import our custom components.
+ */
+import SearchBar from './components/searchbar';
+
+/**
  * Main application container.
  * @type {object}
  */
@@ -15,7 +20,8 @@ class App extends Component {
   render () {
     return (
       <div>
-        <h1>Hello World!</h1>
+        <h1 className="text-xs-center">Poolio</h1>
+        <SearchBar />
       </div>
     );
   }
