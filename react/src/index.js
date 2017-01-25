@@ -6,6 +6,8 @@ import ReactDOM from 'react-dom';
  */
 import SearchBar from './components/searchbar';
 import AddButton from './components/add-button';
+import PlayerList from './components/player-list';
+import StartButton from './components/start-button';
 
 /**
  * Main application container.
@@ -24,6 +26,8 @@ class App extends Component {
         <h1 className="text-xs-center">Poolio</h1>
         <SearchBar />
         <AddButton />
+        <PlayerList />
+        <StartButton />
       </div>
     );
   }

@@ -5,6 +5,7 @@ const AddButton = () => {
     <button
       className="col-md-1"
       type="submit"
+      onClick={() => { console.log('adding player') }}
     >+
     </button>
   )
