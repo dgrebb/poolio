@@ -30,18 +30,18 @@ class App extends Component {
 
   }
 
-  addPlayer(player) {
-    console.log('add play func: ' + player);
-    this.setState({
-      player: player
-    });
-  };
+  // addPlayer(player) {
+  //   console.log('add play func: ' + player);
+  //   this.setState({
+  //     player: player
+  //   });
+  // };
 
   render () {
 
     const playerInputChange = (playerInputText) => {
       this.setState({ playerInputText });
-      console.log(this.state.playerInputText);
+      // console.log(this.state.playerInputText);
     }
 
     return (
@@ -51,7 +51,9 @@ class App extends Component {
           newPlayer={this.state.newPlayer}
           onPlayerInputChange={playerInputChange}
         />
-        <AddButton />
+        <AddButton
+          newPlayerName={this.state.playerInputText}
+        />
         <PlayerList
           players={this.state.players}
         />
