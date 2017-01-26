@@ -5,7 +5,7 @@ class SearchBar extends Component {
   constructor( props ) {
     super(props);
     this.state = {
-      newPlayer: props.newPlayer
+      playerInputText: props.playerInputText
     };
   }
 
@@ -15,7 +15,7 @@ class SearchBar extends Component {
         <input
           type="text"
           className="col-md-11"
-          placeholder={this.state.newPlayer}
+          placeholder={this.state.playerInputText}
           onChange={(e) => {
             this.onInputChange(e.target.value);
           }}
@@ -24,9 +24,9 @@ class SearchBar extends Component {
     );
   };
 
-  onInputChange(newPlayer) {
-    this.setState({newPlayer});
-    this.props.onNewPlayerNameChange(newPlayer);
+  onInputChange(playerInputText) {
+    this.setState({playerInputText});
+    this.props.onPlayerInputChange(playerInputText);
   }
 
 };
