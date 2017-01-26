@@ -20,20 +20,31 @@ const container = document.querySelector('.container');
  */
 class App extends Component {
 
-  constructor(props) {
+  constructor (props) {
     super(props);
 
     this.state = {
-      players: ['Dan', 'Steve']
+      players: ['Dan', 'Steve'],
+      player: 'George'
     };
+
   }
+
+  addPlayer(player) {
+    console.log('add play func: ' + player);
+    this.setState({
+      player: player
+    });
+  };
 
   render () {
     return (
       <div>
         <h1 className="text-xs-center">Poolio</h1>
         <SearchBar />
-        <AddButton />
+        <AddButton
+          onAddNewPlayer={() => {this.addPlayer('Harry')}}
+        />
         <PlayerList
           players={this.state.players}
         />
