@@ -1,22 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class AddButton extends Component {
-
-  constructor(props) {
-    super(props);
-  };
-
-  // console.log(props.onAddNewPlayer)
-  render() {
-    return (
-      <button
-        className="col-md-1"
-        type="submit"
-        onClick={this.props.onAddNewPlayer}
-      >+
-      </button>
-    );
-  };
+const AddButton = (props) => {
+  return (
+    <button
+      className="col-md-1"
+      type="submit"
+    >+
+    </button>
+  )
 }
 
 export default AddButton;

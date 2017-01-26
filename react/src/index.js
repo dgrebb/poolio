@@ -25,7 +25,7 @@ class App extends Component {
 
     this.state = {
       players: ['Dan', 'Steve'],
-      player: 'George'
+      newPlayer: 'Search for or add new player.'
     };
 
   }
@@ -38,13 +38,20 @@ class App extends Component {
   };
 
   render () {
+
+    const newPlayerNameChange = (newPlayer) => {
+      this.setState({ newPlayer });
+      console.log(this.state.newPlayer);
+    }
+
     return (
       <div>
         <h1 className="text-xs-center">Poolio</h1>
-        <SearchBar />
-        <AddButton
-          onAddNewPlayer={() => {this.addPlayer('Harry')}}
+        <SearchBar
+          newPlayer={this.state.newPlayer}
+          onNewPlayerNameChange={newPlayerNameChange}
         />
+        <AddButton />
         <PlayerList
           players={this.state.players}
         />
