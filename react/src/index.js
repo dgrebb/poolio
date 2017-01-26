@@ -23,6 +23,8 @@ class App extends Component {
   constructor (props) {
     super(props);
 
+    // TODO Refactor players array as object with UUIDs for
+    // easier remove, add, delete functionality in persistent store
     this.state = {
       players: ['Dan', 'Steve'],
       playerInputText: 'Search for or add new player.'
@@ -37,11 +39,9 @@ class App extends Component {
     }
 
     const onNewPlayerAdd = (playerName) => {
-      // console.log(playerName);
       var players = this.state.players.slice();
       players.push(playerName);
       this.setState({players});
-      console.log(players);
     }
 
     return (

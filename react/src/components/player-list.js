@@ -1,29 +1,20 @@
 import React, { Component } from 'react';
 
-class PlayerList extends Component {
+const PlayerList = (props) => {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      players: props.players
-    }
-  };
-
-  render () {
-
-    const players = this.state.players.map( (player, i) => {
-      let id = 'player-' + i;
-      return (
-        <li key={id}>{player}</li>
-      );
-    });
-
+  const players = props.players.map( (player, i) => {
+    let id = 'player-' + i;
     return (
-      <ul className="col-md-offset-2 col-md-8">
-        {players}
-      </ul>
+      <li key={id}>{player}</li>
     );
-  };
+  });
+
+  return (
+    <ul className="col-md-offset-2 col-md-8">
+      {players}
+    </ul>
+  );
+
 }
 
 export default PlayerList;
