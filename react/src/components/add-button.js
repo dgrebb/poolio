@@ -1,14 +1,12 @@
 import React from 'react';
 
-const AddButton = (props) => {
-  console.log(props.newPlayerName);
+const AddButton = ({ player, onPlayerAdd }) => {
   return (
     <button
       className="col-md-1"
       type="submit"
-      onClick={() => {
-        console.log(props.newPlayerName);
-      }}
+      player={player}
+      onClick={() => onPlayerAdd(player)}
     >+
     </button>
   )
